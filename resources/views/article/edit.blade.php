@@ -18,29 +18,31 @@
             @csrf
             @method('put')
             <!-- <input type="hidden" name="_method" value="PUT"> -->
-
+            @if($errors)
             <div class="mb-3 col-6">
                 <label for="exampleInputEmail1" class="form-label">Article Name</label>
                 <input type="text" class="form-control" id="exampleInputEmail1" name="name" value="{{$article->name}}">
+                <span class="text-danger">{{$errors->first('name')}}</span>
             </div>
             <div class="mb-3 col-6">
                 <label for="exampleInputEmail1" class="form-label">Article Details</label>
                 <input type="text" class="form-control" id="exampleInputEmail1" name="details" value="{{$article->details}}">
+                <span class="text-danger">{{$errors->first('details')}}</span>
             </div>
 
             <label for="categories">Choose a category:</label>
 
             <select name="categories" id="categories">
-                <option value="">          </option>
+                <option value=""> </option>
                 @foreach ($categories as $category)
                 @if($category->id == $article->category_id)
-                <option value="{{$category->id}}" selected >{{$category->name}}</option>
+                <option value="{{$category->id}}" selected>{{$category->name}}</option>
                 @else
-                <option value="{{$category->id}}"  >{{$category->name}}</option>
+                <option value="{{$category->id}}">{{$category->name}}</option>
                 @endif
                 @endforeach
             </select>
-
+            @endif
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>

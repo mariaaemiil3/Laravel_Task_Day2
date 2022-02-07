@@ -17,24 +17,29 @@
         <form method="POST" action="{{route('article.save')}}">
             <!-- {{route('article.save')}} -->
             @csrf
+            @if($errors)
             <div class="mb-3 col-6">
                 <label for="exampleInputEmail1" class="form-label">Article Name</label>
                 <input type="text" class="form-control" id="exampleInputEmail1" name="name">
+                <span class="text-danger">{{$errors->first('name')}}</span>
             </div>
+           
             <div class="mb-3 col-6">
                 <label for="exampleInputEmail1" class="form-label">Article Details</label>
                 <input type="text" class="form-control" id="exampleInputEmail1" name="details">
+                <span class="text-danger">{{$errors->first('details')}}</span>
             </div>
-            
+
             <label for="categories">Choose a category:</label>
 
             <select name="categories" id="categories">
-                <option value="">          </option>
+                <option value=""></option>
                 @foreach ($categories as $category)
                 <option value="{{$category->id}}">{{$category->name}}</option>
                 @endforeach
             </select>
-
+            <span class="text-danger">{{$errors->first('categories')}}</span>
+            @endif
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>

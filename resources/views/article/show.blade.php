@@ -14,8 +14,7 @@
         <h3 class="text-warning">{{$article->name}}</h3>
         <ul class="list-group">
             <li class="list-group-item">{{$article->details}}</li>
-            <li class="list-group-item">category id: {{$article->category_id}}</li>
-            <li class="list-group-item">category name: {{$category->name}}</li>
+            <li class="list-group-item">Category : {{$category->name}}</li>
         </ul>
         <a href="{{route('category.list')}}" class="btn btn-primary m-5">Show Categories</a>
         <!-- <a href='home' class="btn btn-primary m-5">Back Home</a> -->

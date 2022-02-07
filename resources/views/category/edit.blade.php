@@ -18,12 +18,13 @@
             @csrf
             @method('put')
             <!-- <input type="hidden" name="_method" value="PUT"> -->
-
+            @if($errors)
             <div class="mb-3 col-6">
                 <label for="exampleInputEmail1" class="form-label">Category Name</label>
                 <input type="text" class="form-control" id="exampleInputEmail1" name="name" value="{{$category->name}}">
+                <span class="text-danger">{{$errors->first('name')}}</span>
             </div>
-
+            @endif
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>

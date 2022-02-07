@@ -16,11 +16,13 @@
         <h2 class="text-center">Categories</h2>
         <form method="POST" action="{{route('category.save')}}">
             @csrf
+            @if($errors)
             <div class="mb-3 col-6">
                 <label for="exampleInputEmail1" class="form-label">Category Name</label>
                 <input type="text" class="form-control" id="exampleInputEmail1" name="name">
+                <span class="text-danger">{{$errors->first('name')}}</span>
             </div>
-
+            @endif
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>

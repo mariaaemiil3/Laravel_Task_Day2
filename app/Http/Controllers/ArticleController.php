@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreArticleRequest;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -25,10 +26,12 @@ class ArticleController extends Controller
         // return view('article.create');
     }
 
-    public function save(Request $request)
+    public function save(StoreArticleRequest $request)
     {
         # code...
         // echo $request;
+        $validated = $request->validated();
+
         $article = new Article();
         $article->name = $request->name;
         $article->details = $request->details;
@@ -57,9 +60,11 @@ class ArticleController extends Controller
         return view('article.edit',[ 'id'=>$id, 'article'=>$article, 'categories'=>$categories ]);
     }
 
-    public function update($id, Request $request)
+    public function update($id, StoreArticleRequest $request)
     {
         # code...
+        $validated = $request->validated();
+
         $article = Article::find($id);
         $article->name = $request->name;
         $article->details = $request->details;

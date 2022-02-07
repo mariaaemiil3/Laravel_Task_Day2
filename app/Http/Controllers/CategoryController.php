@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -21,9 +22,10 @@ class CategoryController extends Controller
         return view('category.create');
     }
 
-    public function save(Request $request)
+    public function save(StoreCategoryRequest $request)
     {
         # code...
+        $validated = $request->validated();
         $category = new Category();
         $category->name = $request->name;
         $category->save();
@@ -47,9 +49,11 @@ class CategoryController extends Controller
         return view('category.edit',[ 'id'=>$id, 'category'=>$category ]);
     }
 
-    public function update($id, Request $request)
+    public function update($id, StoreCategoryRequest $request)
     {
         # code...
+        $validated = $request->validated();
+        
         $category = Category::find($id);
         $category->name = $request->name;
         $category->save();
