@@ -18,6 +18,13 @@ class ArticleController extends Controller
         return view('article.list', ['articles' => $articles]);
     }
 
+    public function listInDashboard()
+    {
+        # code...
+        $articles = Article::all();
+        return view('dashboard.pages.data', ['articles' => $articles]);
+    }
+
     public function create()
     {
         # code...

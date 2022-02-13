@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +26,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+// Route::get('template', function (){
+// return view('dashboard.pages.data');
+// });
+
+Route::get('template',[ArticleController::class,'listInDashboard']);
+
+// '/articles',[ArticleController::class,'list']
 require __DIR__.'/auth.php';
